@@ -2,7 +2,7 @@ import * as React from 'react';
 
 interface Props {
   image: HTMLImageElement;
-  key: string;
+  drumKey: string;
 }
 
 /**
@@ -18,6 +18,6 @@ export default class MoyoDrum extends React.Component<Props> {
    * @override
    */
   public render(): React.ReactNode {
-    return <div>{this.props.key}</div>;
+    return <div>{this.props.drumKey}</div>;
   }
 }

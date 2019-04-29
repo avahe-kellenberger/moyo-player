@@ -8,4 +8,4 @@ const root: HTMLElement | null = document.getElementById("root");
 
 const testImage: HTMLImageElement = new Image();
 
-ReactDOM.render(<MoyoDrum key="a" image={testImage} />, root);
+ReactDOM.render(<MoyoDrum drumKey="a" image={testImage} />, root);
