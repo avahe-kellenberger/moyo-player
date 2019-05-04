@@ -1,0 +1,18 @@
+export type Note =
+  | 'a_flat'
+  | 'a'
+  | 'a_sharp'
+  | 'b_flat'
+  | 'b'
+  | 'c'
+  | 'c_sharp'
+  | 'd_flat'
+  | 'd'
+  | 'd_sharp'
+  | 'e_flat'
+  | 'e'
+  | 'f'
+  | 'f_sharp'
+  | 'g_flat'
+  | 'g'
+  | 'g_sharp';
