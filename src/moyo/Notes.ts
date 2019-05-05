@@ -1,6 +1,7 @@
-export type Note =
+export type MoyoNote =
   | 'a_flat'
   | 'a'
+  | 'low_a'
   | 'a_sharp'
   | 'b_flat'
   | 'b'

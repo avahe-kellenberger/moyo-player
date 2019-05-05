@@ -1,6 +1,6 @@
-import { Note } from './Notes';
+import { MoyoNote } from './Notes';
 
-const tones: Map<Note, Howl> = new Map();
+const tones: Map<MoyoNote, Howl> = new Map();
 tones.set('a_flat', new Howl({ src: [''] }));
 tones.set('a', new Howl({ src: [''] }));
 tones.set('a_sharp', new Howl({ src: [''] }));
@@ -24,7 +24,7 @@ export class Tones {
    *
    * @param note
    */
-  public static get(note: Note): Howl {
+  public static get(note: MoyoNote): Howl {
     return tones.get(note)!;
   }
 }

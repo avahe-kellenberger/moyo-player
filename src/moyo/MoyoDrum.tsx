@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Note } from './Notes';
+import { MoyoNote } from './Notes';
 
 interface Props {
   image: HTMLImageElement;
-  scale: Note[];
+  scale: MoyoNote[];
 }
 
 /**
