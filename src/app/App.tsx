@@ -1,10 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
+import MoyoDrum from '../moyo/MoyoDrum';
+import { MoyoScales } from '../moyo/Scales';
 
 /**
  * Application container.
  */
 export default class App extends React.Component {
-
   /**
    * @override
    */
@@ -16,6 +17,10 @@ export default class App extends React.Component {
    * @override
    */
   public render(): React.ReactNode {
-    return <div>Test</div>;
+    return (
+      <div>
+        <MoyoDrum scale={MoyoScales.LOW_A_MINOR} imagePath="dummy_path.png" />
+      </div>
+    );
   }
 }

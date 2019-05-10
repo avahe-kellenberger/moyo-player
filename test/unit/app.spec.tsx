@@ -1,6 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import App from '../../src/app/App';
+import { shallow } from 'enzyme';
+import MoyoDrum from '../../src/moyo/MoyoDrum';
+import { MoyoScales } from '../../src/moyo/Scales';
 
-test('Sample test', () => {
-  expect(1).toEqual(1);
+describe('Application', () => {
+  it('Should be rendered', () => {
+    const wrapper = shallow(<App />);
+    expect(
+      wrapper.containsAllMatchingElements([
+        <MoyoDrum scale={MoyoScales.LOW_A_MINOR} imagePath="dummy_path.png" />
+      ])
+    ).toBeTruthy();
+  });
 });

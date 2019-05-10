@@ -2,7 +2,7 @@ import * as React from 'react';
 import { MoyoNote } from './Notes';
 
 interface Props {
-  image: HTMLImageElement;
+  imagePath: string;
   scale: MoyoNote[];
 }
 
@@ -14,6 +14,11 @@ export default class MoyoDrum extends React.Component<Props> {
    * @override
    */
   public render(): React.ReactNode {
-    return <div>{this.props.scale}</div>;
+    return (
+      <div>
+        <div>{this.props.scale}</div>
+        <img src={this.props.imagePath} />
+      </div>
+    );
   }
 }
