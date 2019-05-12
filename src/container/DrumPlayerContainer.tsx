@@ -3,22 +3,21 @@ import MoyoDrum from '../moyo/MoyoDrum';
 import { MoyoScales } from '../moyo/Scales';
 import { DrumConfig } from '../moyo/DrumConfig';
 
+interface Props {
+  drumConfig: DrumConfig;
+}
+
 /**
  * Application container.
  */
-export default class DrumPlayerContainer extends React.Component<{}, { drumConfig: DrumConfig }> {
+export class DrumPlayerContainer extends React.Component<Props, Props> {
   /**
    *
    */
-  constructor(props: {}) {
+  constructor(props: Props) {
     super(props);
-    const defaultDrumConfig: DrumConfig = {
-      scaleName: 'A minor',
-      imagePath: 'dummy_path.png',
-      tongues: [],
-    };
     this.state = {
-      drumConfig: defaultDrumConfig,
+      drumConfig: props.drumConfig,
     };
   }
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import MoyoDrum from '../../src/moyo/MoyoDrum';
-import DrumPlayerContainer from '../../src/container/DrumPlayerContainer';
+import { DrumPlayerContainer } from '../../src/container/DrumPlayerContainer';
 import { MoyoScales } from '../../src/moyo/Scales';
 import { DrumConfig } from '../../src/moyo/DrumConfig';
 
@@ -12,7 +12,7 @@ describe('Application', () => {
       imagePath: 'dummy_path.png',
       tongues: [],
     };
-    const wrapper = shallow(<DrumPlayerContainer />);
+    const wrapper = shallow(<DrumPlayerContainer drumConfig={defaultDrumConfig} />);
     expect(
       wrapper.containsAllMatchingElements([
         <MoyoDrum drumConfig={defaultDrumConfig} />,
