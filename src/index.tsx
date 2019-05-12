@@ -13,4 +13,4 @@ const defaultDrumConfig: DrumConfig = {
   tongues: [],
 };
 
-ReactDOM.render(<DrumPlayerContainer drumConfig={defaultDrumConfig} />, root);
+ReactDOM.render(<DrumPlayerContainer drumConfigs={[defaultDrumConfig]} />, root);
