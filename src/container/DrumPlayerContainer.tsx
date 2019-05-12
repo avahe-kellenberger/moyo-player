@@ -10,8 +10,8 @@ export default class DrumPlayerContainer extends React.Component<{}, { drumConfi
   /**
    *
    */
-  constructor({}) {
-    super({});
+  constructor(props: {}) {
+    super(props);
     const defaultDrumConfig: DrumConfig = {
       scaleName: 'A minor',
       imagePath: 'dummy_path.png',
