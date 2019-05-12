@@ -13,6 +13,11 @@ describe('Application', () => {
       tongues: [],
     };
     const wrapper = shallow(<DrumPlayerContainer />);
-    expect(wrapper.containsAllMatchingElements([<MoyoDrum drumConfig={defaultDrumConfig} />])).toBeTruthy();
+    expect(
+      wrapper.containsAllMatchingElements([
+        <MoyoDrum drumConfig={defaultDrumConfig} />,
+        <select />,
+      ]),
+    ).toBeTruthy();
   });
 });
