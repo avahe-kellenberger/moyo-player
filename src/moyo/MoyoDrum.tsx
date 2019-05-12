@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { MoyoNote } from './Notes';
+import { DrumConfig } from './DrumConfig';
 
 interface Props {
-  imagePath: string;
-  scale: MoyoNote[];
+  drumConfig: DrumConfig;
 }
 
 /**
@@ -16,8 +15,8 @@ export default class MoyoDrum extends React.Component<Props> {
   public render(): React.ReactNode {
     return (
       <div>
-        <div>{this.props.scale}</div>
-        <img src={this.props.imagePath} />
+        <div>{this.props.drumConfig.scaleName}</div>
+        <img src={this.props.drumConfig.imagePath} />
       </div>
     );
   }

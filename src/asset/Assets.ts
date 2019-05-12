@@ -23,7 +23,7 @@ export class Assets {
       image.onerror = (e: ErrorEvent) => {
         reject(e);
       };
-      image.src = url;
+        image.src = url;
     });
   }
 }
