@@ -1,10 +1,10 @@
-import * as React from 'react';
-import MoyoDrum from '../moyo/MoyoDrum';
-import { MoyoScales } from '../moyo/Scales';
-import { DrumConfig } from '../moyo/DrumConfig';
+import * as React from 'react'
+import MoyoDrum from '../moyo/MoyoDrum'
+import { MoyoScales } from '../moyo/Scales'
+import { DrumConfig } from '../moyo/DrumConfig'
 
 interface Props {
-  drumConfigs: DrumConfig[];
+  drumConfigs: DrumConfig[]
 }
 
 /**
@@ -15,20 +15,27 @@ export class DrumPlayerContainer extends React.Component<Props, { drumConfig: Dr
    *
    */
   constructor(props: Props) {
-    super(props);
+    super(props)
     if (props.drumConfigs === undefined || props.drumConfigs.length < 1) {
-      throw new Error('At least one configuration must be supplied.');
+      throw new Error('At least one configuration must be supplied.')
     }
     this.state = {
-      drumConfig: props.drumConfigs[0],
-    };
+      drumConfig: props.drumConfigs[0]
+    }
   }
 
   public setConfig = (config: DrumConfig): void => {
     this.setState({
-      drumConfig: config,
-    });
-  };
+      drumConfig: config
+    })
+  }
+
+  /**
+   * Invoked when a drum configuration is selected from the `select` element.
+   */
+  public onDrumSelected = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    console.log(e)
+  }
 
   /**
    * @override
@@ -37,16 +44,16 @@ export class DrumPlayerContainer extends React.Component<Props, { drumConfig: Dr
     return (
       <div>
         <MoyoDrum drumConfig={this.state.drumConfig} />
-        <select>
+        <select onChange={this.onDrumSelected}>
           {this.props.drumConfigs.map((config, index) => {
             return (
               <option key={index} value={index}>
                 {config.scaleName}
               </option>
-            );
+            )
           })}
         </select>
       </div>
-    );
+    )
   }
 }
