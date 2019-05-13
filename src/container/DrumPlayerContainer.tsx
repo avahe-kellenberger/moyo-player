@@ -34,7 +34,8 @@ export class DrumPlayerContainer extends React.Component<Props, { drumConfig: Dr
    * Invoked when a drum configuration is selected from the `select` element.
    */
   public onDrumSelected = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-    console.log(e)
+    const index: number = parseInt(e.target.value)
+    this.setConfig(this.props.drumConfigs[index])
   }
 
   /**
