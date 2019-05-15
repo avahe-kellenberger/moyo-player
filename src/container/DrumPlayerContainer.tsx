@@ -16,16 +16,9 @@ export class DrumPlayerContainer extends React.Component<Props, { drumConfig: Dr
     if (props.drumConfigs === undefined || props.drumConfigs.length < 1) {
       throw new Error('At least one configuration must be supplied.')
     }
-
     this.state = {
       drumConfig: props.drumConfigs[0]
     }
-  }
-
-  public setConfig = (config: DrumConfig): void => {
-    this.setState({
-      drumConfig: config
-    })
   }
 
   /**
@@ -33,7 +26,9 @@ export class DrumPlayerContainer extends React.Component<Props, { drumConfig: Dr
    */
   public onDrumSelected = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const index: number = parseInt(e.target.value)
-    this.setConfig(this.props.drumConfigs[index])
+    this.setState({
+      drumConfig: this.props.drumConfigs[index]
+    })
   }
 
   /**

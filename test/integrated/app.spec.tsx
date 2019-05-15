@@ -46,7 +46,7 @@ describe('DrumPlayerContainer', () => {
 
   it('Changing selection should change configuration in MoyoDrum element', () => {
     const wrapper = shallow(<DrumPlayerContainer drumConfigs={drumConfigs} />)
-    const spy = jest.spyOn(wrapper.instance() as DrumPlayerContainer, 'setConfig')
+    const spy = jest.spyOn(wrapper.instance() as DrumPlayerContainer, 'setState')
     wrapper.find('select').simulate('change', { target: { value: '1' } })
     expect(spy).toHaveBeenCalled()
   })
