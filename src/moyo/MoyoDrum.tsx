@@ -8,7 +8,7 @@ import { StatelessComponent } from 'enzyme'
 const MoyoDrum: React.StatelessComponent<{ drumConfig: DrumConfig }> = ({ drumConfig }) => (
   <>
     <div>{drumConfig.scaleName}</div>
-    <img src={drumConfig.imagePath} />
+    <img src={drumConfig.imagePath} width={400} />
   </>
 )
 

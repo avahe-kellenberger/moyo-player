@@ -1,5 +1,6 @@
 import * as React from 'react'
 import MoyoDrum from '../../src/moyo/MoyoDrum'
+import { Assets } from '../../src/asset/Assets'
 import { DrumPlayerContainer } from '../../src/container/DrumPlayerContainer'
 import { MoyoScales } from '../../src/moyo/Scales'
 import { DrumConfig } from '../../src/moyo/DrumConfig'
@@ -8,14 +9,16 @@ import { mount, shallow, ReactWrapper } from 'enzyme'
 describe('DrumPlayerContainer', () => {
   const defaultDrumConfig: DrumConfig = {
     scaleName: 'A minor',
-    imagePath: 'dummy_path.png',
+    imagePath: Assets.MOYO_BLUE,
     tongues: []
   }
+
   const drumConfig2: DrumConfig = {
     scaleName: 'C minor',
-    imagePath: 'dummy_path.png',
+    imagePath: Assets.MOYO_BLUE,
     tongues: []
   }
+
   const drumConfigs: DrumConfig[] = [defaultDrumConfig, drumConfig2]
 
   it('Should contain all necessary children', () => {
