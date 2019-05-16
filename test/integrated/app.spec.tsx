@@ -2,9 +2,8 @@ import * as React from 'react'
 import MoyoDrum from '../../src/moyo/MoyoDrum'
 import { Assets } from '../../src/asset/Assets'
 import { DrumPlayerContainer } from '../../src/container/DrumPlayerContainer'
-import { MoyoScales } from '../../src/moyo/Scales'
 import { DrumConfig } from '../../src/moyo/DrumConfig'
-import { mount, shallow, ReactWrapper } from 'enzyme'
+import { shallow } from 'enzyme'
 
 describe('DrumPlayerContainer', () => {
   const defaultDrumConfig: DrumConfig = {
