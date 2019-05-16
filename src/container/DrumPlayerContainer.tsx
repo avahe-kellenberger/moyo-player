@@ -1,6 +1,5 @@
 import * as React from 'react'
 import MoyoDrum from '../moyo/MoyoDrum'
-import { MoyoScales } from '../moyo/Scales'
 import { DrumConfig } from '../moyo/DrumConfig'
 
 interface Props {

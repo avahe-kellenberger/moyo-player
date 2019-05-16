@@ -1,22 +1,26 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 import { DrumConfig } from './DrumConfig'
-import { StatelessComponent } from 'enzyme'
-
-const mouseDown = (e: React.MouseEvent<HTMLImageElement, MouseEvent>): void => {
-  const clickX = e.pageX - e.currentTarget.x
-  const clickY = e.pageY - e.currentTarget.y
-  console.log(`Click: (${clickX}, ${clickY})`)
-}
 
 /**
  * Interactive Moyo Drum
  */
-const MoyoDrum: React.StatelessComponent<{ drumConfig: DrumConfig }> = ({ drumConfig }) => (
-  <>
-    <div>{drumConfig.scaleName}</div>
-    <img src={drumConfig.imagePath} width={400} onMouseDown={mouseDown} />
-  </>
-)
+export default class MoyoDrum extends React.Component<{ drumConfig: DrumConfig }> {
+  private mouseDown = (e: React.MouseEvent<HTMLImageElement, MouseEvent>): void => {
+    const clickX = e.pageX - e.currentTarget.x
+    const clickY = e.pageY - e.currentTarget.y
+    this.props.drumConfig.tongues.forEach((tongue, index) => {
+      if (tongue.polygon.contains(clickX, clickY)) {
+        console.log(`Clicked tongue ${index}`)
+      }
+    })
+  }
 
-export default MoyoDrum
+  public render() {
+    return (
+      <>
+        <div>{this.props.drumConfig.scaleName}</div>
+        <img src={this.props.drumConfig.imagePath} width={400} onMouseDown={this.mouseDown} />
+      </>
+    )
+  }
+}

@@ -1,3 +1,4 @@
+import 'jest'
 import * as React from 'react'
 import MoyoDrum from '../../src/moyo/MoyoDrum'
 import { Assets } from '../../src/asset/Assets'

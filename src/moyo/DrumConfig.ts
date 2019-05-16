@@ -1,4 +1,4 @@
-import { DrumTongue } from './DrumTongue'
+import DrumTongue from './DrumTongue'
 
 /**
  * Configuration of a drum, including its tongues and image.
