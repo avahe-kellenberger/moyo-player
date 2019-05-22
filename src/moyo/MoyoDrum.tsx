@@ -18,7 +18,7 @@ export default class MoyoDrum extends React.Component<{ drumConfig: DrumConfig }
   public render() {
     return (
       <>
-        <div>{this.props.drumConfig.scaleName}</div>
+        <div style={{ color: '#bbbbbb' }}>{this.props.drumConfig.scaleName}</div>
         <img src={this.props.drumConfig.imagePath} width={400} onMouseDown={this.mouseDown} />
       </>
     )
