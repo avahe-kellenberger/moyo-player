@@ -1,26 +1,11 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Assets } from './asset/Assets'
 import { DrumPlayerContainer } from './container/DrumPlayerContainer'
-import MoyoAMinor from './moyo/configs/MoyoAMinor'
+import MoyoDMinor from './moyo/configs/MoyoDMinor'
 import { DrumConfig } from './moyo/DrumConfig'
 
 const root: HTMLElement | null = document.getElementById('root')
 
-// TODO: MVP only; load configurations from a json file.
-
-const aMinor = new MoyoAMinor()
-const defaultDrumConfig: DrumConfig = {
-  scaleName: 'A minor',
-  imagePath: Assets.MOYO_BLUE,
-  tongues: []
-}
-
-const drumConfig2: DrumConfig = {
-  scaleName: 'C minor',
-  imagePath: Assets.MOYO_BLUE,
-  tongues: []
-}
-
-const configurations: DrumConfig[] = [aMinor, defaultDrumConfig, drumConfig2]
+const moyoDMinor = new MoyoDMinor();
+const configurations: DrumConfig[] = [moyoDMinor]
 ReactDOM.render(<DrumPlayerContainer drumConfigs={configurations} />, root)
