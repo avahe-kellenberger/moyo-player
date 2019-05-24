@@ -19,11 +19,16 @@ export default class MoyoDrum extends React.Component<{ drumConfig: DrumConfig }
         })
     }
 
+    private drag = (e: React.MouseEvent<HTMLImageElement, MouseEvent>): boolean => {
+        e.preventDefault()
+        return false
+    }
+
     public render() {
         return (
             <>
                 <div className='drum-container'>{this.props.drumConfig.scaleName}</div>
-                <img className='drum-img' src={this.props.drumConfig.imagePath} width={400} onMouseDown={this.mouseDown} draggable={false} />
+                <img className='drum-img' src={this.props.drumConfig.imagePath} width={400} draggable={false} onMouseDown={this.mouseDown} onDragStart={this.drag} />
             </>
         )
     }
