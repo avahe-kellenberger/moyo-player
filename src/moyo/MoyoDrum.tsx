@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { DrumConfig } from './DrumConfig'
+import './moyodrum.scss'
 
 /**
  * Interactive Moyo Drum
@@ -21,8 +22,8 @@ export default class MoyoDrum extends React.Component<{ drumConfig: DrumConfig }
     public render() {
         return (
             <>
-                <div style={{ color: '#bbbbbb' }}>{this.props.drumConfig.scaleName}</div>
-                <img src={this.props.drumConfig.imagePath} width={400} onMouseDown={this.mouseDown} draggable={false} />
+                <div className='drum-container'>{this.props.drumConfig.scaleName}</div>
+                <img className='drum-img' src={this.props.drumConfig.imagePath} width={400} onMouseDown={this.mouseDown} draggable={false} />
             </>
         )
     }
