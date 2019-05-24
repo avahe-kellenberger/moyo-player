@@ -1,33 +1,21 @@
 export type Note =
-    | 'a_flat'
-    | 'a'
     | 'low_a'
-    | 'a_sharp'
-    | 'b_flat'
-    | 'b'
-    | 'c'
-    | 'c_sharp'
-    | 'd_flat'
-    | 'd'
-    | 'd_sharp'
-    | 'e_flat'
-    | 'e'
-    | 'f'
-    | 'f_sharp'
-    | 'g_flat'
-    | 'g'
-    | 'g_sharp';
+    | 'low_b'
+    | 'low_c'
+    | 'low_d'
 
-export class Notes {
+    | 'mid_a'
+    | 'mid_a#'
+    | 'mid_b'
+    | 'mid_c'
+    | 'mid_c#'
+    | 'mid_d'
+    | 'mid_d#'
+    | 'mid_e'
+    | 'mid_f#'
+    | 'mid_g'
 
-    private static readonly howlMap = new Map<Note, Howl>();
-
-    /**
-     * @param note The `Note` of which to access the Howl object.
-     */
-    public static getHowl(note: Notes): Howl {
-        return new Howl({src: ''});
-    }
-
-}
-
+    | 'high_a'
+    | 'high_f'
+    | 'high_f#'
+    | 'high_g';

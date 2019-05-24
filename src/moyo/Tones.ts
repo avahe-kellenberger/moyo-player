@@ -1,23 +1,27 @@
 const tones: Map<Note, Howl> = new Map();
-tones.set('a_flat', new Howl({ src: [''] }));
-tones.set('a', new Howl({ src: [''] }));
-tones.set('a_sharp', new Howl({ src: [''] }));
-tones.set('b_flat', new Howl({ src: [''] }));
-tones.set('b', new Howl({ src: [''] }));
-tones.set('c', new Howl({ src: [''] }));
-tones.set('c_sharp', new Howl({ src: [''] }));
-tones.set('d_flat', new Howl({ src: [''] }));
-tones.set('d', new Howl({ src: [''] }));
-tones.set('d_sharp', new Howl({ src: [''] }));
-tones.set('e_flat', new Howl({ src: [''] }));
-tones.set('e', new Howl({ src: [''] }));
-tones.set('f', new Howl({ src: [''] }));
-tones.set('f_sharp', new Howl({ src: [''] }));
-tones.set('g_flat', new Howl({ src: [''] }));
-tones.set('g', new Howl({ src: [''] }));
-tones.set('g_sharp', new Howl({ src: [''] }));
+tones.set('low_a', new Howl({ src: ['low_a.mp3'] }));
+tones.set('low_b', new Howl({ src: ['low_b.mp3'] }));
+tones.set('low_c', new Howl({ src: ['low_c.mp3'] }));
+tones.set('low_d', new Howl({ src: ['low_d.mp3'] }));
 
-import { Note } from './Notes';
+tones.set('mid_a', new Howl({ src: ['mid_a.mp3'] }));
+tones.set('mid_a#', new Howl({ src: ['mid_a#.mp3'] }));
+tones.set('mid_b', new Howl({ src: ['mid_b.mp3'] }));
+tones.set('mid_c', new Howl({ src: ['mid_c.mp3'] }));
+tones.set('mid_c#', new Howl({ src: ['mid_c#.mp3'] }));
+tones.set('mid_d', new Howl({ src: ['mid_d.mp3'] }));
+tones.set('mid_d#', new Howl({ src: ['mid_d#.mp3'] }));
+tones.set('mid_e', new Howl({ src: ['mid_e.mp3'] }));
+tones.set('mid_f#', new Howl({ src: ['mid_f#.mp3'] }));
+tones.set('mid_g', new Howl({ src: ['mid_g.mp3'] }));
+
+tones.set('high_a', new Howl({ src: ['high_a.mp3'] }));
+tones.set('high_f', new Howl({ src: ['high_f.mp3'] }));
+tones.set('high_f#', new Howl({ src: ['high_f#.mp3'] }));
+tones.set('high_g', new Howl({ src: ['high_g.mp3'] }));
+
+import { Note } from './Notes'
+
 export class Tones {
   /**
    *
