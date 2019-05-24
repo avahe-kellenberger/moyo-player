@@ -1,9 +1,10 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import { Assets } from './asset/Assets'
+import { DrumPlayerContainer } from './container/DrumPlayerContainer'
 import MoyoAMinor from './moyo/configs/MoyoAMinor'
 import { DrumConfig } from './moyo/DrumConfig'
-import { DrumPlayerContainer } from './container/DrumPlayerContainer'
-import { Assets } from './asset/Assets'
+
 const root: HTMLElement | null = document.getElementById('root')
 
 // TODO: MVP only; load configurations from a json file.
