@@ -1,10 +1,10 @@
+import { shallow } from 'enzyme'
 import 'jest'
 import * as React from 'react'
-import MoyoDrum from '../../src/moyo/MoyoDrum'
 import { Assets } from '../../src/asset/Assets'
 import { DrumPlayerContainer } from '../../src/container/DrumPlayerContainer'
 import { DrumConfig } from '../../src/moyo/DrumConfig'
-import { shallow } from 'enzyme'
+import MoyoDrum from '../../src/moyo/MoyoDrum'
 
 describe('DrumPlayerContainer', () => {
   const defaultDrumConfig: DrumConfig = {
