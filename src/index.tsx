@@ -9,3 +9,4 @@ const root: HTMLElement | null = document.getElementById('root')
 const moyoDMinor = new MoyoDMinor()
 const configurations: DrumConfig[] = [moyoDMinor]
 ReactDOM.render(<DrumPlayerContainer drumConfigs={configurations} />, root)
+
