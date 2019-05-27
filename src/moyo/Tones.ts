@@ -7,40 +7,34 @@ export class Tones {
 
   private static loadTones(): Map<Note, Howl> {
     const toneMap: Map<Note, Howl> = new Map()
-    toneMap.set('low_a', new Howl({ src: [`${Assets.SOUNDS_PATH}/low_a.mp3`], volume: 0.32 }))
-    toneMap.set('low_b', new Howl({ src: [`${Assets.SOUNDS_PATH}/low_b.mp3`], volume: 0.32 }))
-    toneMap.set('low_c', new Howl({ src: [`${Assets.SOUNDS_PATH}/low_c.mp3`], volume: 0.32 }))
-    toneMap.set('low_d', new Howl({ src: [`${Assets.SOUNDS_PATH}/low_d.mp3`], volume: 0.32 }))
-    toneMap.set('mid_a', new Howl({ src: [`${Assets.SOUNDS_PATH}/mid_a.mp3`], volume: 0.32 }))
-    toneMap.set(
-      'mid_a_sharp',
-      new Howl({ src: [`${Assets.SOUNDS_PATH}/mid_a_sharp.mp3`], volume: 0.32 })
-    )
-    toneMap.set('mid_b', new Howl({ src: [`${Assets.SOUNDS_PATH}/mid_b.mp3`], volume: 0.32 }))
-    toneMap.set('mid_c', new Howl({ src: [`${Assets.SOUNDS_PATH}/mid_c.mp3`], volume: 0.32 }))
-    toneMap.set(
-      'mid_c_sharp',
-      new Howl({ src: [`${Assets.SOUNDS_PATH}/mid_c_sharp.mp3`], volume: 0.32 })
-    )
-    toneMap.set('mid_d', new Howl({ src: [`${Assets.SOUNDS_PATH}/mid_d.mp3`], volume: 0.32 }))
-    toneMap.set(
-      'mid_d_sharp',
-      new Howl({ src: [`${Assets.SOUNDS_PATH}/mid_d_sharp.mp3`], volume: 0.32 })
-    )
-    toneMap.set('mid_e', new Howl({ src: [`${Assets.SOUNDS_PATH}/mid_e.mp3`], volume: 0.32 }))
-    toneMap.set(
-      'mid_f_sharp',
-      new Howl({ src: [`${Assets.SOUNDS_PATH}/mid_f_sharp.mp3`], volume: 0.32 })
-    )
-    toneMap.set('mid_g', new Howl({ src: [`${Assets.SOUNDS_PATH}/mid_g.mp3`], volume: 0.32 }))
-    toneMap.set('high_a', new Howl({ src: [`${Assets.SOUNDS_PATH}/high_a.mp3`], volume: 0.32 }))
-    toneMap.set('high_f', new Howl({ src: [`${Assets.SOUNDS_PATH}/high_f.mp3`], volume: 0.32 }))
-    toneMap.set(
-      'high_f_sharp',
-      new Howl({ src: [`${Assets.SOUNDS_PATH}/high_f_sharp.mp3`], volume: 0.32 })
-    )
-    toneMap.set('high_g', new Howl({ src: [`${Assets.SOUNDS_PATH}/high_g.mp3`], volume: 0.32 }))
+    toneMap.set('low_a', Tones.createHowl('low_a.mp3'))
+    toneMap.set('low_b', Tones.createHowl('low_b.mp3'))
+    toneMap.set('low_c', Tones.createHowl('low_c.mp3'))
+    toneMap.set('low_d', Tones.createHowl('low_d.mp3'))
+    toneMap.set('mid_a', Tones.createHowl('mid_a.mp3'))
+    toneMap.set('mid_a_sharp', Tones.createHowl('mid_a_sharp.mp3'))
+    toneMap.set('mid_b', Tones.createHowl('mid_b.mp3'))
+    toneMap.set('mid_c', Tones.createHowl('mid_c.mp3'))
+    toneMap.set('mid_c_sharp', Tones.createHowl('mid_c_sharp.mp3'))
+    toneMap.set('mid_d', Tones.createHowl('mid_d.mp3'))
+    toneMap.set('mid_d_sharp', Tones.createHowl('mid_d_sharp.mp3'))
+    toneMap.set('mid_e', Tones.createHowl('mid_e.mp3'))
+    toneMap.set('mid_f_sharp', Tones.createHowl('mid_f_sharp.mp3'))
+    toneMap.set('mid_g', Tones.createHowl('mid_g.mp3'))
+    toneMap.set('high_a', Tones.createHowl('high_a.mp3'))
+    toneMap.set('high_f', Tones.createHowl('high_f.mp3'))
+    toneMap.set('high_f_sharp', Tones.createHowl('high_f_sharp.mp3'))
+    toneMap.set('high_g', Tones.createHowl('high_g.mp3'))
     return toneMap
+  }
+
+  /**
+   * Creates a howl with default settings.
+   * @param name The name of the sound file.
+   * @return A Howl object with default settings.
+   */
+  private static createHowl(name: string): Howl {
+    return new Howl({ src: [`${Assets.SOUNDS_PATH}/${name}`], volume: 0.32, preload: true })
   }
 
   /**
