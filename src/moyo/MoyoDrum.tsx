@@ -50,13 +50,18 @@ export default class MoyoDrum extends React.Component<Props, State> {
   }
 
   private async loadTonesForProps(): Promise<void> {
-    const promises: Promise<void>[] = []
+    const promises: Promise<Howl>[] = []
     this.props.drumConfig.tongues.forEach((tongue) => {
       if (tongue.tone.state() !== 'loaded') {
-        promises.push(new Promise(() => tongue.tone.load()))
+        promises.push(
+          new Promise((resolve) => {
+            tongue.tone.once('load', () => resolve())
+            tongue.tone.load()
+          })
+        )
       }
     })
-    return Promise.resolve(promises).then(() => {})
+    return Promise.all(promises).then(() => {})
   }
 
   /**
