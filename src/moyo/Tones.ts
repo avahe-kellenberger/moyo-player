@@ -34,12 +34,13 @@ export class Tones {
    * @return A Howl object with default settings.
    */
   private static createHowl(name: string): Howl {
-    return new Howl({ src: [`${Assets.SOUNDS_PATH}/${name}`], volume: 0.32, preload: true })
+    return new Howl({ src: [`${Assets.SOUNDS_PATH}/${name}`], volume: 0.32, preload: false })
   }
 
   /**
-   *
-   * @param note
+   * Finds the tone associated with the given note.
+   * @param note The note associated with a tone.
+   * @return A Tone associated with the given note.
    */
   public static get(note: Note): Howl {
     return this.toneMap.get(note)!

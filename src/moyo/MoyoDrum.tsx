@@ -3,10 +3,62 @@ import { DrumConfig } from './DrumConfig'
 import DrumTongue from './DrumTongue'
 import './moyodrum.scss'
 
+interface Props {
+  drumConfig: DrumConfig
+}
+
+interface State {
+  loading: boolean
+}
+
 /**
  * Interactive Moyo Drum
  */
-export default class MoyoDrum extends React.Component<{ drumConfig: DrumConfig }> {
+export default class MoyoDrum extends React.Component<Props, State> {
+  constructor(props: Props, state: State) {
+    super(props, state)
+    this.state = {
+      loading: true
+    }
+  }
+
+  /**
+   * @override
+   */
+  public componentDidMount(): void {
+    // Load the drum assets as soon as the component mounts.
+    this.loadDrum()
+  }
+
+  /**
+   * @override
+   */
+  public componentDidUpdate(previousProps: Props): void {
+    // If the configuration (props) updates, we need to ensure the assets are loaded.
+    if (this.props !== previousProps) {
+      this.loadDrum()
+    }
+  }
+
+  /**
+   * Loads the tones and configures the correct state.
+   */
+  private loadDrum(): void {
+    this.loadTonesForProps().then(() => {
+      this.setState({ loading: false })
+    })
+  }
+
+  private async loadTonesForProps(): Promise<void> {
+    const promises: Promise<void>[] = []
+    this.props.drumConfig.tongues.forEach((tongue) => {
+      if (tongue.tone.state() !== 'loaded') {
+        promises.push(new Promise(() => tongue.tone.load()))
+      }
+    })
+    return Promise.resolve(promises).then(() => {})
+  }
+
   /**
    * Plays the tone of the clicked tongue, if one was clicked.
    */
@@ -43,7 +95,11 @@ export default class MoyoDrum extends React.Component<{ drumConfig: DrumConfig }
   public render() {
     return (
       <>
-        <div id="drum-title">{this.props.drumConfig.scaleName}</div>
+        <div id="drum-title">
+          {this.state.loading
+            ? `Loading ${this.props.drumConfig.scaleName} - Please Wait`
+            : this.props.drumConfig.scaleName}
+        </div>
         <img
           className="drum-img"
           src={this.props.drumConfig.imagePath}
