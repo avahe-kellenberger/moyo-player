@@ -36,6 +36,7 @@ export default class MoyoDrum extends React.Component<Props, State> {
   public componentDidUpdate(previousProps: Props): void {
     // If the configuration (props) updates, we need to ensure the assets are loaded.
     if (this.props !== previousProps) {
+      this.setState({ loading: true })
       this.loadDrum()
     }
   }
