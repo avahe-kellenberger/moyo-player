@@ -49,7 +49,7 @@ export default class MoyoDMinor implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'mid_a',
+      'low_d',
       new Polygon([
         [338, 334],
         [303, 260],
@@ -63,7 +63,7 @@ export default class MoyoDMinor implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'low_d',
+      'mid_a',
       new Polygon([
         [137, 381],
         [178, 328],

@@ -71,6 +71,7 @@ export default class MoyoDrum extends React.Component<Props, State> {
   private mouseDown = (e: React.MouseEvent<HTMLImageElement, MouseEvent>): void => {
     const clickX = e.pageX - e.currentTarget.x
     const clickY = e.pageY - e.currentTarget.y
+    console.log(`${clickX}, ${clickY}`)
     this.findTongue(clickX, clickY, (tongue) => tongue.tone.play())
   }
 

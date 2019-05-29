@@ -9,13 +9,13 @@ import MoyoDrum from '../../src/moyo/MoyoDrum'
 describe('DrumPlayerContainer', () => {
   const defaultDrumConfig: DrumConfig = {
     scaleName: 'A minor',
-    imagePath: Assets.MOYO_BLUE,
+    imagePath: Assets.MOYO_PURPLE,
     tongues: []
   }
 
   const drumConfig2: DrumConfig = {
     scaleName: 'C minor',
-    imagePath: Assets.MOYO_BLUE,
+    imagePath: Assets.MOYO_PURPLE,
     tongues: []
   }
 
