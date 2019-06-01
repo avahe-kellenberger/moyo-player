@@ -1,7 +1,7 @@
 # moyo-player
-Interactive Moyo Drum player (in-development)
+Interactive Moyo Drum player
 
-[Click here for live demo](https://avahe.tk/moyo/)
+[Click here for live site](https://player.visionhawkmusic.com/)
 
 ## What is this?
 
