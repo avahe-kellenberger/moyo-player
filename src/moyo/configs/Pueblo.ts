@@ -8,7 +8,7 @@ export default class Pueblo implements DrumConfig {
   public readonly imagePath: string = Assets.IMAGE_PUEBLO
   public readonly tongues: DrumTongue[] = [
     new DrumTongue(
-      'high_a',
+      '4_a',
       new Polygon([
         [225, 14],
         [209, 44],
@@ -23,7 +23,7 @@ export default class Pueblo implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'mid_e',
+      '4_e',
       new Polygon([
         [341, 73],
         [303, 87],
@@ -38,7 +38,7 @@ export default class Pueblo implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'mid_c',
+      '4_c',
       new Polygon([
         [381, 233],
         [329, 203],
@@ -55,7 +55,7 @@ export default class Pueblo implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'low_d',
+      '3_d',
       new Polygon([
         [256, 364],
         [255, 308],
@@ -73,7 +73,7 @@ export default class Pueblo implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'mid_a',
+      '3_a',
       new Polygon([
         [60, 326],
         [108, 303],
@@ -88,7 +88,7 @@ export default class Pueblo implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'mid_d',
+      '4_d',
       new Polygon([
         [15, 162],
         [53, 185],
@@ -103,7 +103,7 @@ export default class Pueblo implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'high_f',
+      '4_f',
       new Polygon([
         [100, 40],
         [109, 80],
@@ -118,7 +118,7 @@ export default class Pueblo implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'mid_a_sharp',
+      '3_a_sharp',
       new Polygon([
         [290, 200],
         [291, 157],

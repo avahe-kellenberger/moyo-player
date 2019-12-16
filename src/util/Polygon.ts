@@ -21,7 +21,7 @@ export default class Polygon {
    */
   public contains(x: number, y: number): boolean {
     const verts: number[][] = this.vertices
-    let inside: boolean = false
+    let inside = false
     let lastV: number[] = verts[verts.length - 1]
     let currV: number[]
     for (let i = 0; i < verts.length; lastV = currV, i++) {

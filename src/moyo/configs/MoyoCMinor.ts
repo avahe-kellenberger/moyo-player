@@ -8,7 +8,7 @@ export default class MoyoCMinor implements DrumConfig {
   public readonly imagePath: string = Assets.MOYO_PURPLE
   public readonly tongues: DrumTongue[] = [
     new DrumTongue(
-      'high_g',
+      '4_g',
       new Polygon([
         [161, 21],
         [159, 47],
@@ -22,7 +22,7 @@ export default class MoyoCMinor implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'mid_d_sharp',
+      '4_d_sharp',
       new Polygon([
         [284, 35],
         [251, 76],
@@ -35,7 +35,7 @@ export default class MoyoCMinor implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'mid_a_sharp',
+      '3_a_sharp',
       new Polygon([
         [378, 140],
         [323, 139],
@@ -49,7 +49,7 @@ export default class MoyoCMinor implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'low_c',
+      '3_c',
       new Polygon([
         [338, 334],
         [303, 260],
@@ -63,7 +63,7 @@ export default class MoyoCMinor implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'mid_g',
+      '3_g',
       new Polygon([
         [137, 381],
         [178, 328],
@@ -77,15 +77,15 @@ export default class MoyoCMinor implements DrumConfig {
       ])
     ),
     new DrumTongue(
-      'mid_c',
+      '4_c',
       new Polygon([[15, 241], [75, 248], [103, 227], [110, 199], [110, 168], [89, 144], [24, 136]])
     ),
     new DrumTongue(
-      'high_f',
+      '4_f',
       new Polygon([[54, 82], [90, 127], [106, 130], [134, 115], [150, 93], [151, 74], [120, 33]])
     ),
     new DrumTongue(
-      'mid_d',
+      '4_d',
       new Polygon([
         [221, 227],
         [255, 181],

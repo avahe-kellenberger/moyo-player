@@ -7,24 +7,24 @@ export class Tones {
 
   private static loadTones(): Map<Note, Howl> {
     const toneMap: Map<Note, Howl> = new Map()
-    toneMap.set('low_a', Tones.createHowl('low_a.mp3'))
-    toneMap.set('low_b', Tones.createHowl('low_b.mp3'))
-    toneMap.set('low_c', Tones.createHowl('low_c.mp3'))
-    toneMap.set('low_d', Tones.createHowl('low_d.mp3'))
-    toneMap.set('mid_a', Tones.createHowl('mid_a.mp3'))
-    toneMap.set('mid_a_sharp', Tones.createHowl('mid_a_sharp.mp3'))
-    toneMap.set('mid_b', Tones.createHowl('mid_b.mp3'))
-    toneMap.set('mid_c', Tones.createHowl('mid_c.mp3'))
-    toneMap.set('mid_c_sharp', Tones.createHowl('mid_c_sharp.mp3'))
-    toneMap.set('mid_d', Tones.createHowl('mid_d.mp3'))
-    toneMap.set('mid_d_sharp', Tones.createHowl('mid_d_sharp.mp3'))
-    toneMap.set('mid_e', Tones.createHowl('mid_e.mp3'))
-    toneMap.set('mid_f_sharp', Tones.createHowl('mid_f_sharp.mp3'))
-    toneMap.set('mid_g', Tones.createHowl('mid_g.mp3'))
-    toneMap.set('high_a', Tones.createHowl('high_a.mp3'))
-    toneMap.set('high_f', Tones.createHowl('high_f.mp3'))
-    toneMap.set('high_f_sharp', Tones.createHowl('high_f_sharp.mp3'))
-    toneMap.set('high_g', Tones.createHowl('high_g.mp3'))
+    toneMap.set('2_a', Tones.createHowl('2_a.mp3'))
+    toneMap.set('2_b', Tones.createHowl('2_b.mp3'))
+    toneMap.set('3_c', Tones.createHowl('3_c.mp3'))
+    toneMap.set('3_d', Tones.createHowl('3_d.mp3'))
+    toneMap.set('3_f_sharp', Tones.createHowl('3_f_sharp.mp3'))
+    toneMap.set('3_g', Tones.createHowl('3_g.mp3'))
+    toneMap.set('3_a', Tones.createHowl('3_a.mp3'))
+    toneMap.set('3_a_sharp', Tones.createHowl('3_a_sharp.mp3'))
+    toneMap.set('3_b', Tones.createHowl('3_b.mp3'))
+    toneMap.set('4_c', Tones.createHowl('4_c.mp3'))
+    toneMap.set('4_c_sharp', Tones.createHowl('4_c_sharp.mp3'))
+    toneMap.set('4_d', Tones.createHowl('4_d.mp3'))
+    toneMap.set('4_d_sharp', Tones.createHowl('4_d_sharp.mp3'))
+    toneMap.set('4_e', Tones.createHowl('4_e.mp3'))
+    toneMap.set('4_a', Tones.createHowl('4_a.mp3'))
+    toneMap.set('4_f', Tones.createHowl('4_f.mp3'))
+    toneMap.set('4_f_sharp', Tones.createHowl('4_f_sharp.mp3'))
+    toneMap.set('4_g', Tones.createHowl('4_g.mp3'))
     return toneMap
   }
 
@@ -43,6 +43,10 @@ export class Tones {
    * @return A Tone associated with the given note.
    */
   public static get(note: Note): Howl {
-    return this.toneMap.get(note)!
+    const howl: Howl|undefined = this.toneMap.get(note)
+    if (howl === undefined) {
+      throw new Error(`Note not found: ${note}`)
+    }
+    return howl
   }
 }
