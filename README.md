@@ -12,4 +12,4 @@ This project is an online interactive moyo drum in the browser.
 ## How to build/deploy
 
 1. Build the application with either `yarn build` or `npm run build`
-2. Copy the `prod` and `res` directories to your directory being served by your webserver
+2. Copy the `res` directory and the *contents* of the `prod` directory into the directory being served by your webserver
