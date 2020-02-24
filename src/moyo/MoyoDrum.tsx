@@ -22,6 +22,13 @@ interface TouchClickEvent {
  * Interactive Moyo Drum
  */
 export default class MoyoDrum extends React.Component<Props, State> {
+
+  /**
+   * If the interface being used is touch-based.
+   * If this is set to true, all mouse events will be disabled.
+   */
+  private touchBasedInterface: boolean = false
+
   constructor(props: Props, state: State) {
     super(props, state)
     this.state = {
@@ -72,8 +79,12 @@ export default class MoyoDrum extends React.Component<Props, State> {
     return Promise.all(promises).then(() => {})
   }
 
-
   private mouseDown = (e: React.MouseEvent<HTMLImageElement, MouseEvent>): void => {
+    if (this.touchBasedInterface === true) {
+      e.preventDefault()
+      return
+    }
+
     this.tryPlayDrumTongue({
       pageX: e.pageX,
       pageY: e.pageY,
@@ -82,7 +93,9 @@ export default class MoyoDrum extends React.Component<Props, State> {
     })
   }
 
-  private onTouch = (e: React.TouchEvent<HTMLImageElement>): void => {
+  private onTouchStart = (e: React.TouchEvent<HTMLImageElement>): void => {
+    this.touchBasedInterface = true;
+
     for (let i = 0; i < e.touches.length; i++) {
       const touch = e.touches.item(i);
       this.tryPlayDrumTongue({
@@ -141,7 +154,7 @@ export default class MoyoDrum extends React.Component<Props, State> {
           width={400}
           draggable={false}
           onMouseDown={this.mouseDown}
-          onTouchStart={this.onTouch}
+          onTouchStart={this.onTouchStart}
           onDragStart={this.preventImageDrag}
         />
       </>
