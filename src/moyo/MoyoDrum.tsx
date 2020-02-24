@@ -11,6 +11,13 @@ interface State {
   loading: boolean
 }
 
+interface TouchClickEvent {
+  pageX: number,
+  pageY: number,
+  currentTargetX: number,
+  currentTargetY: number
+}
+
 /**
  * Interactive Moyo Drum
  */
@@ -65,12 +72,34 @@ export default class MoyoDrum extends React.Component<Props, State> {
     return Promise.all(promises).then(() => {})
   }
 
-  /**
-   * Plays the tone of the clicked tongue, if one was clicked.
-   */
+
   private mouseDown = (e: React.MouseEvent<HTMLImageElement, MouseEvent>): void => {
-    const clickX = e.pageX - e.currentTarget.x
-    const clickY = e.pageY - e.currentTarget.y
+    this.tryPlayDrumTongue({
+      pageX: e.pageX,
+      pageY: e.pageY,
+      currentTargetX: e.currentTarget.x,
+      currentTargetY: e.currentTarget.y
+    })
+  }
+
+  private onTouch = (e: React.TouchEvent<HTMLImageElement>): void => {
+    for (let i = 0; i < e.touches.length; i++) {
+      const touch = e.touches.item(i);
+      this.tryPlayDrumTongue({
+        pageX: touch.pageX,
+        pageY: touch.pageY,
+        currentTargetX: e.currentTarget.x,
+        currentTargetY: e.currentTarget.y
+      })
+    }
+  }
+
+  /**
+   * Plays the tone of the clicked/touched tongue, if one was clicked.
+   */
+  private tryPlayDrumTongue(e: TouchClickEvent): void {
+    const clickX = e.pageX - e.currentTargetX
+    const clickY = e.pageY - e.currentTargetY
     this.findTongue(clickX, clickY, (tongue) => tongue.tone.play())
   }
 
@@ -112,6 +141,7 @@ export default class MoyoDrum extends React.Component<Props, State> {
           width={400}
           draggable={false}
           onMouseDown={this.mouseDown}
+          onTouchStart={this.onTouch}
           onDragStart={this.preventImageDrag}
         />
       </>
