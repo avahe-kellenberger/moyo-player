@@ -1,4 +1,5 @@
 import * as React from 'react'
+import ReactDOM from 'react-dom';
 import { DrumConfig } from './DrumConfig'
 import DrumTongue from './DrumTongue'
 import './moyodrum.scss'
@@ -111,8 +112,8 @@ export default class MoyoDrum extends React.Component<Props, State> {
    * Plays the tone of the clicked/touched tongue, if one was clicked.
    */
   private tryPlayDrumTongue(e: TouchClickEvent): void {
-    const clickX = e.pageX - e.currentTargetX
-    const clickY = e.pageY - e.currentTargetY
+    const clickX = e.pageX - e.currentTargetX + window.scrollX
+    const clickY = e.pageY - e.currentTargetY + window.scrollY
     this.findTongue(clickX, clickY, (tongue) => tongue.tone.play())
   }
 

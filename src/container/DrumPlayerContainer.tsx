@@ -11,6 +11,7 @@ interface Props {
  * Application container.
  */
 export class DrumPlayerContainer extends React.Component<Props, { drumConfig: DrumConfig }> {
+
   constructor(props: Props) {
     super(props)
     if (props.drumConfigs === undefined || props.drumConfigs.length < 1) {
