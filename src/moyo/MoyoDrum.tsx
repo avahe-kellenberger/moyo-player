@@ -1,5 +1,4 @@
 import * as React from 'react'
-import ReactDOM from 'react-dom';
 import { DrumConfig } from './DrumConfig'
 import DrumTongue from './DrumTongue'
 import './moyodrum.scss'
