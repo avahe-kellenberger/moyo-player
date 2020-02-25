@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import { DrumConfig } from './DrumConfig'
 import DrumTongue from './DrumTongue'
 import './moyodrum.scss'
@@ -12,10 +13,10 @@ interface State {
 }
 
 interface TouchClickEvent {
-  pageX: number,
-  pageY: number,
-  currentTargetX: number,
-  currentTargetY: number
+  eventX: number,
+  eventY: number,
+  elementX: number,
+  elementY: number
 }
 
 /**
@@ -28,6 +29,8 @@ export default class MoyoDrum extends React.Component<Props, State> {
    * If this is set to true, all mouse events will be disabled.
    */
   private touchBasedInterface: boolean = false
+
+  private elementPosition: [number, number]|undefined;
 
   constructor(props: Props, state: State) {
     super(props, state)
@@ -79,31 +82,57 @@ export default class MoyoDrum extends React.Component<Props, State> {
     return Promise.all(promises).then(() => {})
   }
 
+  /**
+   * Ensures the Moyo element is valid, and updates `this.elementPosition`.
+   *
+   * @param {HTMLImageElement} currentTarget - The `currentTarget` of the input event.
+   * @return {boolean} If the element is valid and `this.elementPosition` can be used.
+   */
+  private validateElement(currentTarget: HTMLImageElement): boolean {
+    let element = ReactDOM.findDOMNode(currentTarget)
+    if (!(element instanceof Element)) {
+      alert("Error loading image information!")
+      this.elementPosition = undefined
+      return false;
+    }
+    const rect: DOMRect = element.getBoundingClientRect()
+    this.elementPosition = [rect.left, rect.top]
+    return true
+  }
+
   private mouseDown = (e: React.MouseEvent<HTMLImageElement, MouseEvent>): void => {
     if (this.touchBasedInterface === true) {
       e.preventDefault()
       return
     }
 
-    this.tryPlayDrumTongue({
-      pageX: e.pageX,
-      pageY: e.pageY,
-      currentTargetX: e.currentTarget.x,
-      currentTargetY: e.currentTarget.y
-    })
+    this.validateElement(e.currentTarget);
+
+    if (this.elementPosition != null) {
+      this.tryPlayDrumTongue({
+        eventX: e.pageX,
+        eventY: e.pageY,
+        elementX: this.elementPosition[0],
+        elementY: this.elementPosition[1]
+      })
+    }
   }
 
   private onTouchStart = (e: React.TouchEvent<HTMLImageElement>): void => {
     this.touchBasedInterface = true;
 
-    for (let i = 0; i < e.touches.length; i++) {
-      const touch = e.touches.item(i);
-      this.tryPlayDrumTongue({
-        pageX: touch.pageX,
-        pageY: touch.pageY,
-        currentTargetX: e.currentTarget.x,
-        currentTargetY: e.currentTarget.y
-      })
+    this.validateElement(e.currentTarget)
+
+    if (this.elementPosition != null) {
+      for (let i = 0; i < e.touches.length; i++) {
+        const touch = e.touches.item(i);
+        this.tryPlayDrumTongue({
+          eventX: touch.pageX,
+          eventY: touch.pageY,
+          elementX: this.elementPosition[0],
+          elementY: this.elementPosition[1]
+        })
+      }
     }
   }
 
@@ -111,8 +140,8 @@ export default class MoyoDrum extends React.Component<Props, State> {
    * Plays the tone of the clicked/touched tongue, if one was clicked.
    */
   private tryPlayDrumTongue(e: TouchClickEvent): void {
-    const clickX = e.pageX - e.currentTargetX + window.scrollX
-    const clickY = e.pageY - e.currentTargetY + window.scrollY
+    const clickX = e.eventX - e.elementX
+    const clickY = e.eventY - e.elementY
     this.findTongue(clickX, clickY, (tongue) => tongue.tone.play())
   }
 
