@@ -24,6 +24,13 @@ module.exports = {
     "@typescript-eslint/no-namespace": 0,
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-empty-function': [ 'off' ],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        'argsIgnorePattern': '_|[iI]gnored'
+      }
+    ],
     'quotes': [
       'error',
       'single'
@@ -50,7 +57,7 @@ module.exports = {
       'never'
     ],
     'no-trailing-spaces': [ 'error' ],
-    'no-inner-declarations': [ 'off' ]
+    'no-inner-declarations': [ 'off' ],
   },
   settings: {
     react: {

@@ -1,22 +1,21 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 import { DrumConfig } from './DrumConfig'
 import DrumTongue from './DrumTongue'
 import './moyodrum.scss'
 
 interface Props {
-  drumConfig: DrumConfig
+  drumConfig: DrumConfig;
 }
 
 interface State {
-  loading: boolean
+  loading: boolean;
 }
 
 interface TouchClickEvent {
-  eventX: number,
-  eventY: number,
-  elementX: number,
-  elementY: number
+  eventX: number;
+  eventY: number;
+  elementX: number;
+  elementY: number;
 }
 
 /**
@@ -28,9 +27,10 @@ export default class MoyoDrum extends React.Component<Props, State> {
    * If the interface being used is touch-based.
    * If this is set to true, all mouse events will be disabled.
    */
-  private touchBasedInterface: boolean = false
-  private elementBoundingRect: DOMRect|undefined;
-  private readonly initialWidth: number = 400;
+  private touchBasedInterface = false
+  private imageElement: HTMLImageElement|null = null
+  private elementBoundingRect: DOMRect|undefined
+  private initialSize: readonly [number, number] = [0, 0]
 
   constructor(props: Props, state: State) {
     super(props, state)
@@ -61,10 +61,9 @@ export default class MoyoDrum extends React.Component<Props, State> {
   /**
    * Loads the tones and configures the correct state.
    */
-  private loadDrum(): void {
-    this.loadTonesForProps().then(() => {
-      this.setState({ loading: false })
-    })
+  private async loadDrum(): Promise<any> {
+    await this.loadTonesForProps()
+    this.setState({ loading: false })
   }
 
   private async loadTonesForProps(): Promise<void> {
@@ -83,15 +82,12 @@ export default class MoyoDrum extends React.Component<Props, State> {
   }
 
   /**
-   * Ensures the Moyo element is valid, and updates `this.elementPosition`.
-   *
-   * @param {HTMLImageElement} currentTarget - The `currentTarget` of the input event.
+   * Ensures the Moyo image element is valid, and updates `this.elementPosition`.
    */
-  private validateElement(currentTarget: HTMLImageElement): void {
-    let element = ReactDOM.findDOMNode(currentTarget)
+  private validateImageElement(): void {
+    const element = this.imageElement
     if (!(element instanceof Element)) {
       this.throwImageLoadError()
-      return;
     }
     this.elementBoundingRect = element.getBoundingClientRect()
   }
@@ -102,7 +98,7 @@ export default class MoyoDrum extends React.Component<Props, State> {
       return
     }
 
-    this.validateElement(e.currentTarget);
+    this.validateImageElement()
 
     if (this.elementBoundingRect != null) {
       this.tryPlayDrumTongue({
@@ -115,13 +111,13 @@ export default class MoyoDrum extends React.Component<Props, State> {
   }
 
   private onTouchStart = (e: React.TouchEvent<HTMLImageElement>): void => {
-    this.touchBasedInterface = true;
+    this.touchBasedInterface = true
 
-    this.validateElement(e.currentTarget)
+    this.validateImageElement()
 
     if (this.elementBoundingRect != null) {
       for (let i = 0; i < e.touches.length; i++) {
-        const touch = e.touches.item(i);
+        const touch = e.touches.item(i)
         this.tryPlayDrumTongue({
           eventX: touch.pageX,
           eventY: touch.pageY,
@@ -136,20 +132,21 @@ export default class MoyoDrum extends React.Component<Props, State> {
    * Plays the tone of the clicked/touched tongue, if one was clicked.
    */
   private tryPlayDrumTongue(e: TouchClickEvent): void {
-    if (this.elementBoundingRect == null) { 
+    if (this.elementBoundingRect == null) {
       this.throwImageLoadError()
-      return
     }
+    const scalarX: number = this.initialSize[0] / this.elementBoundingRect.width
+    const clickX = (e.eventX - e.elementX) * scalarX - window.pageXOffset
 
-    const scalar: number = this.initialWidth / this.elementBoundingRect.width 
-    const clickX = (e.eventX - e.elementX) * scalar - window.pageXOffset
-    const clickY = (e.eventY - e.elementY) * scalar - window.pageYOffset
+    const scalarY: number = this.initialSize[1] / this.elementBoundingRect.height
+    const clickY = (e.eventY - e.elementY) * scalarY - window.pageYOffset
+
     this.findTongue(clickX, clickY, (tongue) => tongue.tone.play())
   }
 
-  private throwImageLoadError(): void {
-      alert("Error loading image information!")
-      throw new Error("Invalid image information!")
+  private throwImageLoadError(): never {
+    alert('Error loading image information!')
+    throw new Error('Invalid image information!')
   }
 
   /**
@@ -176,6 +173,11 @@ export default class MoyoDrum extends React.Component<Props, State> {
     return false
   }
 
+  private onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>): void => {
+    const image: HTMLImageElement & EventTarget = e.currentTarget
+    this.initialSize = [image.naturalWidth, image.naturalHeight]
+  }
+
   public render() {
     return (
       <>
@@ -185,6 +187,8 @@ export default class MoyoDrum extends React.Component<Props, State> {
             : this.props.drumConfig.scaleName}
         </div>
         <img
+          ref={node => this.imageElement = node}
+          onLoad={this.onImageLoad}
           className="drum-img"
           src={this.props.drumConfig.imagePath}
           width={400}

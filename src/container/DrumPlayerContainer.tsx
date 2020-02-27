@@ -4,7 +4,7 @@ import MoyoDrum from '../moyo/MoyoDrum'
 import './drumplayercontainer.scss'
 
 interface Props {
-  drumConfigs: DrumConfig[]
+  drumConfigs: DrumConfig[];
 }
 
 /**
